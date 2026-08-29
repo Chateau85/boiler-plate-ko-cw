@@ -1,26 +1,31 @@
 {
   "name": "boiler-plate",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Secure MERN authentication study application",
+  "main": "server/index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node server/index.js",
     "backend": "nodemon server/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently \"npm run backend\" \"npm run start --prefix client\""
+    "client": "npm run dev --prefix client",
+    "dev": "concurrently --kill-others-on-fail \"npm run backend\" \"npm run client\"",
+    "test": "node --test \"test/*.test.js\"",
+    "test:client": "npm test --prefix client",
+    "build": "npm run build --prefix client"
   },
   "author": "cheolwoo",
   "license": "ISC",
+  "engines": {
+    "node": ">=22.22.2"
+  },
   "dependencies": {
-    "bcrypt": "^5.0.0",
-    "body-parser": "^1.19.0",
-    "concurrently": "^5.3.0",
-    "cookie-parser": "^1.4.5",
-    "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.10.9"
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.9.4"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "concurrently": "^10.0.5",
+    "nodemon": "^3.1.14"
   }
 }
